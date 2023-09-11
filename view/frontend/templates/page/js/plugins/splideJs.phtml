@@ -1,0 +1,65 @@
+<?php
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+
+/** @var Escaper $escaper */
+/** @var Template $block */
+?>
+<script>
+    (() => {
+        function loadJSLibrary() {
+            return new Promise(resolve => {
+                const script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = '<?= $escaper->escapeJs($block->getViewFileUrl('Blackbird_HyvaSplideJS::js/splide.min.js')) ?>';
+                script.async = true;
+                script.onload = resolve;
+                document.head.appendChild(script);
+            })
+        }
+        function loadCssLibrary() {
+            return new Promise(resolve => {
+                const link = document.createElement('link');
+                link.rel = "stylesheet";
+                link.type = "text/css";
+                link.href = '<?= $escaper->escapeJs($block->getViewFileUrl('Blackbird_HyvaSplideJS::css/splide.min.css')) ?>';
+                link.onload = resolve;
+                document.head.appendChild(link);
+            })
+        }
+
+        function loadScripts() {
+            if(isScriptAdded()){
+                return;
+            }
+
+            Promise.all([loadJSLibrary(), loadCssLibrary()]).then(() => dispatchEvent());
+        }
+        function dispatchEvent() {
+            window.dispatchEvent(new CustomEvent('alpine-splide-js-loaded'));
+        }
+        function isScriptAdded() {
+            const scripts = document.scripts;
+            for(const script in scripts) {
+                if(!scripts[script].src){
+                    continue;
+                }
+
+                if(scripts[script].src.includes('js/library/splide.min.js')){
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        document.addEventListener("alpine:init", () => {
+            if (!document.getElementsByClassName('splide').length) {
+                return;
+            }
+
+            loadScripts();
+        });
+    })();
+</script>
