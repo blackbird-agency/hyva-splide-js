@@ -21,6 +21,8 @@ An implementation of [SplideJS library](https://splidejs.com/) in [Hyvä Theme f
 You no longer need to worry about how to implement SplideJS in your Magento 2 Hyvä Theme projects.</br>
 No manipulations required, instant use after installation.
 
+Splide is lazily loaded and does not affect performances accoding to [Hyvä documentation](https://docs.hyva.io/hyva-themes/writing-code/patterns/loading-external-javascript.html).
+
 [How It Works](#how-it-works) •
 [Installation](#installation) •
 [Usage](#usage)
