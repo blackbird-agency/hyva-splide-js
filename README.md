@@ -11,8 +11,10 @@
   
 # hyva-splide-js
 
-![version](https://img.shields.io/badge/version-1.0.0-blue)
-![version](https://img.shields.io/badge/splidejs-4.1.3-purple)
+[![Latest Stable Version](https://img.shields.io/badge/version-1.0.0-blue)](https://packagist.org/packages/blackbird/hyva-splide-js)
+[![SplideJS Version](https://img.shields.io/badge/splidejs-4.1.3-purple)](https://github.com/Splidejs/splide/releases/tag/v4.1.3)
+[![License: MIT](https://img.shields.io/github/license/blackbird-agency/hyva-splide-js.svg)](./LICENSE)
+
 
 An implementation of [SplideJS library](https://splidejs.com/) in [Hyvä Theme for Magento 2](https://www.hyva.io/hyva-themes-license.html)
 
