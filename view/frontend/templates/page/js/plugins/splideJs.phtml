@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+use Blackbird\HyvaSplideJS\Api\HyvaSplideJSInterface;
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
 
@@ -13,7 +14,9 @@ use Magento\Framework\View\Element\Template;
             return new Promise(resolve => {
                 const script = document.createElement('script');
                 script.type = 'text/javascript';
-                script.src = '<?= $escaper->escapeJs($block->getViewFileUrl('Blackbird_HyvaSplideJS::js/splide.min.js')) ?>';
+                script.src = '<?= $escaper->escapeUrl(
+                    $block->getViewFileUrl(HyvaSplideJSInterface::URL_SPLIDE_MIN_JS)
+                ) ?>';
                 script.async = true;
                 script.onload = resolve;
                 document.head.appendChild(script);
@@ -24,7 +27,9 @@ use Magento\Framework\View\Element\Template;
                 const link = document.createElement('link');
                 link.rel = "stylesheet";
                 link.type = "text/css";
-                link.href = '<?= $escaper->escapeJs($block->getViewFileUrl('Blackbird_HyvaSplideJS::css/splide.min.css')) ?>';
+                link.href = '<?= $escaper->escapeUrl(
+                    $block->getViewFileUrl(HyvaSplideJSInterface::URL_SPLIDE_MIN_CSS)
+                ) ?>';
                 link.onload = resolve;
                 document.head.appendChild(link);
             })
@@ -38,7 +43,9 @@ use Magento\Framework\View\Element\Template;
             Promise.all([loadJSLibrary(), loadCssLibrary()]).then(() => dispatchEvent());
         }
         function dispatchEvent() {
-            window.dispatchEvent(new CustomEvent('alpine-splide-js-loaded'));
+            window.dispatchEvent(
+                new CustomEvent('<?= $escaper->escapeJs(HyvaSplideJSInterface::EVENT_SPLIDE_LOADED) ?>')
+            );
         }
         function isScriptAdded() {
             const scripts = document.scripts;
@@ -47,7 +54,9 @@ use Magento\Framework\View\Element\Template;
                     continue;
                 }
 
-                if(scripts[script].src.includes('js/library/splide.min.js')){
+                if(scripts[script].src.includes(
+                    '<?= $escaper->escapeUrl(HyvaSplideJSInterface::URL_SPLIDE_MIN_JS) ?>'
+                )){
                     return true;
                 }
             }
