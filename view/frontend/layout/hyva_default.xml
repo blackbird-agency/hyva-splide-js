@@ -3,7 +3,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="script-alpine-js">
-            <block name="alpine-plugin-splide-js" template="Blackbird_HyvaSplideJS::page/js/plugins/splideJs.phtml"/>
+            <block name="alpine-plugin-splide-js" template="Blackbird_HyvaSplideJs::page/js/plugins/splideJs.phtml"/>
         </referenceBlock>
     </body>
 </page>
