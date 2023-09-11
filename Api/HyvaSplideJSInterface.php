@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Blackbird\HyvaSplideJS\Api;
+namespace Blackbird\HyvaSplideJs\Api;
 
 interface HyvaSplideJSInterface
 {

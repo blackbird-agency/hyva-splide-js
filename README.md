@@ -64,7 +64,7 @@ Next, listen for the custom event indicating that SplideJS has been loaded, and 
 
 ```html
 <?php
-use \Blackbird\HyvaSplideJS\Api\HyvaSplideJSInterface;
+use \Blackbird\HyvaSplideJs\Api\HyvaSplideJSInterface;
 ?>
 <script>
     function myXData () {
@@ -87,7 +87,7 @@ You can specify any of the SplideJS options as shown [here](https://splidejs.com
 
 ```html
 <?php
-use \Blackbird\HyvaSplideJS\Api\HyvaSplideJSInterface;
+use \Blackbird\HyvaSplideJs\Api\HyvaSplideJSInterface;
 ?>
 <div x-data="myXData()" x-bind="eventListeners">
   <section class="splide" id="my-slider">
