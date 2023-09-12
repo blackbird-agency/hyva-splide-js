@@ -40,12 +40,10 @@ use Magento\Framework\View\Element\Template;
                 return;
             }
 
-            Promise.all([loadJSLibrary(), loadCssLibrary()]).then(() => dispatchEvent());
+            Promise.all([loadJSLibrary(), loadCssLibrary()]).then(() => updateStoreState());
         }
-        function dispatchEvent() {
-            window.dispatchEvent(
-                new CustomEvent('<?= $escaper->escapeJs(HyvaSplideJSInterface::EVENT_SPLIDE_LOADED) ?>')
-            );
+        function updateStoreState() {
+            Alpine.store('<?= HyvaSplideJSInterface::HYVA_SPLIDE_JS ?>').is_loaded = true;
         }
         function isScriptAdded() {
             const scripts = document.scripts;
@@ -63,7 +61,19 @@ use Magento\Framework\View\Element\Template;
             return false;
         }
 
+        function initializeStoreState() {
+            Alpine.store('<?= HyvaSplideJSInterface::HYVA_SPLIDE_JS ?>', {
+                is_loaded: false,
+
+                forceLoad() {
+                    loadScripts();
+                }
+            });
+        }
+
         document.addEventListener("alpine:init", () => {
+            initializeStoreState();
+
             if (!document.getElementsByClassName('splide').length) {
                 return;
             }
