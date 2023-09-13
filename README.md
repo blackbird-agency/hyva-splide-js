@@ -36,7 +36,7 @@ The module simply loads SplideJS on all pages with at least one element in the D
 
 When the library has been loaded on the page, a state stored in the [Alpine.store](https://alpinejs.dev/globals/alpine-store) is updated, indicating that SplideJS is ready for use.
 
-The state can also be used to force the library to be loaded at any time, here is an example using `forceLoad()`
+The state can also be used to force the library to be loaded at any time, here is an example using [forceLoad()](#example--usage-of-forceload)
 
 ## Installation
 
