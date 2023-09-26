@@ -25,7 +25,8 @@ Splide is lazily loaded and does not affect performances accoding to [Hyvä docu
 
 [How It Works](#how-it-works) •
 [Installation](#installation) •
-[Usage](#usage)
+[Usage](#usage) •
+[More modules](#more-modules)
 
 </div>
 
@@ -143,3 +144,7 @@ $store.<?= HyvaSplideJSInterface::HYVA_SPLIDE_JS ?>.forceLoad()
 *To find out exactly which one to use, please see the official Alpine documentation for [$store](https://alpinejs.dev/magics/store) or for [Alpine.store](https://alpinejs.dev/globals/alpine-store).*
 
 This will force the library to load on the page, even if no element has the `splide` class. You can then follow the classic [Usage](#usage) procedure to apply Splide.
+
+## More modules
+  
+[hyva-photo-swipe](https://github.com/blackbird-agency/hyva-photo-swipe) : An implementation of PhotoSwipe library in Hyvä Theme for Magento 2, full-screen gallery sliders, zoomable and highly customizable.
