@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use Blackbird\HyvaSplideJs\Api\HyvaSplideJSInterface;
+use Blackbird\HyvaSplideJs\Api\RequirementsInterface;
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
 
@@ -15,7 +16,7 @@ use Magento\Framework\View\Element\Template;
                 const script = document.createElement('script');
                 script.type = 'text/javascript';
                 script.src = '<?= $escaper->escapeUrl(
-                    $block->getViewFileUrl(HyvaSplideJSInterface::URL_SPLIDE_MIN_JS)
+                    $block->getViewFileUrl(RequirementsInterface::URL_SPLIDE_MIN_JS)
                 ) ?>';
                 script.async = true;
                 script.onload = resolve;
@@ -28,7 +29,7 @@ use Magento\Framework\View\Element\Template;
                 link.rel = "stylesheet";
                 link.type = "text/css";
                 link.href = '<?= $escaper->escapeUrl(
-                    $block->getViewFileUrl(HyvaSplideJSInterface::URL_SPLIDE_MIN_CSS)
+                    $block->getViewFileUrl(RequirementsInterface::URL_SPLIDE_MIN_CSS)
                 ) ?>';
                 link.onload = resolve;
                 document.head.appendChild(link);
@@ -47,18 +48,17 @@ use Magento\Framework\View\Element\Template;
         }
         function isScriptAdded() {
             const scripts = document.scripts;
-            for(const script in scripts) {
-                if(!scripts[script].src){
-                    continue;
+            const scriptsContainingSplide = Array.from(scripts).filter((script) => {
+                if(!script.src){
+                    return false;
                 }
 
-                if(scripts[script].src.includes(
-                    '<?= $escaper->escapeUrl(HyvaSplideJSInterface::URL_SPLIDE_MIN_JS) ?>'
-                )){
-                    return true;
-                }
-            }
-            return false;
+                return script.src.includes(
+                    '<?= RequirementsInterface::FILE_NAME_SPLIDE_MIN_JS ?>'
+                );
+            })
+
+            return scriptsContainingSplide.length;
         }
 
         function initializeStoreState() {
